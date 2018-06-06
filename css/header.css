@@ -1,0 +1,918 @@
+@charset "UTF-8";
+
+/*-------------------------------------
+  BEGIN header
+  [construction]
+  header
+    header_wrapper
+     L header__logo-PC
+     Lheader__navi-bar-SP
+       L bar-SP__logo
+       L bar-SP_menu-btn
+     L navi_list
+       lnavi-list_item
+         L list-items
+-------------------------------------*/
+.header{
+  position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+  background: #000;
+  font-size: 32px;
+  width: 180px;
+  z-index: 999;
+}
+
+.header_wrapper{
+  text-align: center;
+}
+
+.header__logo-PC{
+  display: block;
+  font-size: 1em;
+  margin-top: 1.5em;
+  margin-bottom: 1.875em;
+  text-align: center;
+}
+
+.logo-PC_txt{
+  display: block;
+}
+
+.header__navi-bar-SP{
+  display: none;
+}
+
+.navi_back{
+  display: none;
+}
+
+.navi_list{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2em;
+}
+
+.navi-list_item{
+  font-size: .5em;
+  margin-bottom: .75em;
+  position: relative;
+}
+
+.navi-list_item > a{
+  display: inline-block;
+}
+
+.navi-list_item > a::before,
+.navi-list_item > a::after{
+  position: absolute;
+    top: 0;
+    right: 0;
+  content: attr(data-text);
+  display: inline-block;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.navi-list_item > a::before{
+  color: hsla(138, 100%, 63%, 1);
+  z-index: -1;
+}
+.navi-list_item > a::after{
+  color: hsla(360, 100%, 63%, 1);
+  z-index: -2;
+}
+
+.navi-list_item > a:hover{
+  animation: glitch .5s linear 0s 1 forwards;
+}
+
+.navi-list_item > a:hover::before{
+  animation: glitch1 .5s linear 0s 1;
+}
+
+.navi-list_item > a:hover::after{
+  animation: glitch2 .5s linear 0s 1;
+}
+
+/* ------------------------------------
+  header for SP
+------------------------------------ */
+@media screen and (max-width: 600px) {
+  .header{
+    position: fixed;
+      top: 0;
+      left: 0;
+    font-size: 28px;
+    height: 56px;
+    width: 100%;
+  }
+
+  .header_wrapper{
+    height: inherit;
+  }
+
+  .header__logo-PC{
+    display: none;
+  }
+
+  .header__navi-bar-SP{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding:0 1em;
+    height: inherit;
+    width: 100%;
+  }
+
+  .bar-SP_menu-btn{
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    width: 40px;
+    z-index: 999;
+  }
+
+  .menu-btn_line{
+    position: absolute;
+    left: 0;
+    background: #fff;
+    display: block;
+    height: 4px;
+    width: 100%;
+  }
+
+  .menu-btn_line--top{
+    top: 12px;
+    transition: transform .25s;
+  }
+
+  .menu-btn_line--mid{
+    top: 26px;
+  }
+
+  .menu-btn_line--btm{
+    top: 40px;
+    transition: transform .25s;
+  }
+
+  .header__navi{
+    position: fixed;
+      top: -100%;
+      left: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .header__navi .navi-list_item{
+
+    font-size: .75em;
+    margin-bottom: 1em;
+    opacity: 0;
+    position: relative;
+  }
+
+  /* state (navi open)*/
+  .menu-btn_line--top.is-opened{
+    transform: translateY(14px);
+  }
+
+  .menu-btn_line--btm.is-opened{
+    transform: translateY(-14px);
+  }
+
+  .header__navi.is-opened{
+    animation: navi-show .5s linear 0s 1 forwards;
+  }
+
+  .header__navi.is-opened .navi-list_item{
+    animation: item-fade-in .5s linear 0s 1 forwards;
+  }
+
+  /* navi menu background */
+  .navi_back{
+    position: absolute;
+      top: 0;
+      left: 0;
+    display: block;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .navi_back--1{
+    /* little green on the top */
+    background:
+    linear-gradient(transparent 13%, hsla(141, 100%, 50%, 0.7) 14%,  hsla(141, 100%, 50%, 0.7) 25%, transparent 26%),
+    linear-gradient(transparent 25%, hsla(141, 100%, 50%, 0.9) 26%, hsla(141, 100%, 50%, 0.9) 28%, transparent 30%)
+    ;
+  }
+
+  .navi_back--2{
+    /* green red blue */
+    background:
+    linear-gradient(transparent 5%, hsla(141, 57%, 32%, 0.5) 6%, hsla(141, 57%, 32%, 0.5) 10%, hsla(141, 57%, 32%, 0.5) 11%, transparent 12%),
+    linear-gradient(transparent 11%, hsla(141, 75%, 60%, 0.8) 12%, hsla(141, 75%, 60%, 0.8) 16%, transparent 17%),
+    linear-gradient(transparent 23%, hsla(141, 100%, 50%, 0.7) 24%,  hsla(141, 100%, 50%, 0.7) 35%, transparent 36%),
+    linear-gradient(transparent 35%, hsla(141, 100%, 50%, 0.9) 36%, hsla(141, 100%, 50%, 0.9) 38%, transparent 40%),
+    linear-gradient(transparent 44%, hsla(360, 54%, 46%, 0.7) 46%, hsla(360, 54%, 46%, 0.7) 50%, transparent 55%),
+    linear-gradient(transparent 55%, hsla(360, 80%, 60%, 0.9) 59%, hsla(360, 80%, 60%, 0.9) 65%, transparent 67%),
+    linear-gradient(transparent 69%, hsla(241, 60%, 60%, 0.5) 71%, hsla(241, 60%, 60%, 0.5) 73%, transparent 74%),
+    linear-gradient(transparent 73%, hsla(200, 60%, 60%, 0.5) 74%, hsla(200, 60%, 60%, 0.5) 75%, transparent 76%),
+    linear-gradient(transparent 75%, hsla(180, 60%, 60%, 0.5) 76%, hsla(180, 60%, 60%, 0.5) 78%, transparent 80%),
+    linear-gradient(transparent 79%, hsla(141, 75%, 60%, 0.8) 80%, hsla(141, 75%, 60%, 0.8) 84%, transparent 86%)
+    ;
+  }
+
+  .navi_back--3{
+    /* main green & white bottom half */
+    background:
+    linear-gradient(transparent 1%, hsla(141, 57%, 32%, 0.5) 2%, hsla(141, 57%, 32%, 0.5) 5%, transparent 6%),
+    linear-gradient(transparent 8%, hsla(141, 75%, 60%, 0.8) 9%, hsla(141, 75%, 60%, 0.8) 16%, transparent 17%),
+    linear-gradient(transparent 10.5%, hsla(141, 100%, 50%, 0.9) 11%, hsla(141, 100%, 50%, 0.9) 11.5%, transparent 12%),
+    linear-gradient(transparent 16%, hsla(180, 100%, 50%, 0.9) 16.5%, hsla(180, 100%, 50%, 0.9) 17%, transparent 17.5%),
+    linear-gradient(transparent 15%, hsla(130, 100%, 60%, 0.9) 16%, hsla(130, 100%, 60%, 0.9) 19%, transparent 20%),
+    linear-gradient(transparent 20%, hsla(180, 100%, 50%, 0.9) 20.5%, hsla(180, 100%, 50%, 0.9) 21%, transparent 21.5%),
+    linear-gradient(transparent 19%, hsla(130, 100%, 60%, 0.9) 20%, hsla(130, 100%, 60%, 0.9) 23%, transparent 24%),
+    linear-gradient(transparent 24%, hsla(141, 75%, 60%, 0.6) 24.1%, hsla(141, 75%, 60%, 0.6) 27%, transparent 27.5%),
+    linear-gradient(transparent 27.5%, hsla(141, 57%, 32%, 0.5) 27.6%, hsla(141, 57%, 32%, 0.5) 35%, transparent 35.5%),
+    linear-gradient(transparent 36.5%, hsla(156, 6%, 76%, 0.6) 37%, hsla(156, 6%, 76%, 0.6) 38%, transparent 40%),
+    linear-gradient(transparent 41%, hsla(156, 6%, 76%, 0.8) 41.5%, hsla(156, 6%, 76%, 0.8) 42%, transparent 42.5%),
+    linear-gradient(transparent 41.5%, hsla(0, 100%, 57%, 0.9) 42%, hsla(0, 100%, 57%, 0.9) 46.5%, transparent 47%),
+    linear-gradient(transparent 46%, hsla(156, 6%, 76%, 0.8) 46.5%, hsla(156, 6%, 76%, 0.8) 48%, transparent 48.5%),
+    linear-gradient(transparent 48% ,hsla(141, 74%, 70%, 0.6) 49%, hsla(141, 74%, 70%, 0.6) 60%, transparent 61%),
+    linear-gradient(transparent 49% ,hsla(191, 80%, 60%, 0.9) 50%, hsla(191, 80%, 60%, 0.9) 53%, hsla(0, 0%, 100%, 1) 54%, transparent 55%),
+    linear-gradient(transparent 49%, hsla(0, 0%, 100%, 1) 50%, hsla(0, 0%, 100%, 1) 80%, transparent 82%),
+    linear-gradient(transparent 84%, hsla(130, 100%, 60%, 0.9) 84.5%, hsla(130, 100%, 60%, 0.9) 85%, transparent 86%),
+    linear-gradient(transparent 83%, hsla(0, 0%, 100%, 1) 84%, hsla(0, 0%, 100%, 1) 87%, transparent 88%)
+    ;
+  }
+
+  .navi_back--4{
+    /* main red & litte green, blue */
+    background:
+    linear-gradient(transparent 30%, hsla(0, 100%, 57%, 0.3) 30.5%, hsla(0, 100%, 57%, 0.3) 35%, transparent 35.5%),
+    linear-gradient(transparent 35%, hsla(0, 100%, 57%, 0.5) 35.5%, hsla(0, 100%, 57%, 0.5) 36%, transparent 36.5%),
+    linear-gradient(transparent 32.5%, hsla(182, 100%, 57%, 0.5) 33%, hsla(182, 100%, 57%, 0.5) 33.2%, transparent 33.7%),
+    linear-gradient(transparent 42.5%, hsla(168, 100%, 57%, 0.6) 43%, hsla(168, 100%, 57%, 0.6) 45%, transparent 45.5%),
+    linear-gradient(transparent 47%, hsla(168, 100%, 57%, 0.4) 47.5%, hsla(168, 100%, 57%, 0.4) 49%, transparent 49.5%),
+    linear-gradient(transparent 50%, hsla(168, 100%, 57%, 0.4) 50.5%, hsla(168, 100%, 57%, 0.4) 50.7%, transparent 51.2%),
+    linear-gradient(transparent 52%, hsla(182, 100%, 57%, 0.3) 52.5%, hsla(182, 100%, 57%, 0.3) 55%, transparent 55.5%),
+    linear-gradient(transparent 40%, hsla(0, 100%, 57%, 0.3) 40.5%, hsla(0, 100%, 57%, 0.3) 55%, transparent 56%),
+    linear-gradient(transparent 55.5%, hsla(182, 100%, 57%, 0.3) 56%, hsla(182, 100%, 57%, 0.3) 57.5%, transparent 58%),
+    linear-gradient(transparent 58.5%, hsla(182, 100%, 57%, 0.2) 59%, hsla(182, 100%, 57%, 0.2) 62.5%, transparent 63.5%),
+    linear-gradient(transparent 70%, hsla(0, 100%, 57%, 0.3) 70.5%, hsla(0, 100%, 57%, 0.3) 73.5%, transparent 74%),
+    linear-gradient(transparent 75%, hsla(0, 100%, 57%, 0.3) 75.5%, hsla(0, 100%, 57%, 0.3) 77.5%, transparent 78%),
+    linear-gradient(transparent 68%, hsla(0, 100%, 57%, 0.3) 68.5%, hsla(0, 100%, 57%, 0.3) 80%, transparent 80.5%),
+    linear-gradient(transparent 64.5%, hsla(0, 100%, 57%, 0.3) 65.5%, hsla(0, 100%, 57%, 0.3) 85%, transparent 86%)
+    ;
+  }
+
+  .navi_back--5{
+    /* main both green and white */
+    background:
+    linear-gradient(transparent 2%, hsla(179, 40%, 100%, 0.2) 2.5%, hsla(179, 40%, 100%, 0.2) 2.7%, transparent 3%),
+    linear-gradient(transparent 5%, hsla(172, 60%, 50%, 0.3) 5.5%, hsla(172, 60%, 50%, 0.3) 7%, transparent 7.5%),
+    linear-gradient(transparent 7.5%, hsla(172, 60%, 50%, 0.3) 8%, hsla(172, 60%, 50%, 0.3) 8.3%, transparent 8.8%),
+    linear-gradient(transparent 12%, hsla(172, 60%, 50%, 0.1) 12.5%, hsla(172, 60%, 50%, 0.1) 12.7%, transparent 13.2%),
+    linear-gradient(transparent 20%, hsla(172, 60%, 50%, 0.4) 20%, hsla(172, 60%, 50%, 0.4) 20.5%, transparent 21%),
+    linear-gradient(transparent 9%, hsla(172, 60%, 50%, 0.2) 9.5%, hsla(172, 60%, 50%, 0.2) 24%, transparent 24.5%),
+    linear-gradient(transparent 2%, hsla(172, 60%, 50%, 0.15) 3%, hsla(172, 60%, 50%, 0.15) 25%, transparent 26%),
+    linear-gradient(transparent 25%, hsla(178, 100%, 70%, 1) 25%, hsla(178, 100%, 70%, 1) 25.5%, transparent 25.5%),
+    linear-gradient(transparent 23%, hsla(178, 0%, 77%, 0.77) 23%, hsla(178, 0%, 77%, 0.77) 25.5%, transparent 25.5%),
+    linear-gradient(transparent 37%, hsla(0, 0%, 100%, 1) 37%, hsla(0, 0%, 100%, 1) 38%, transparent 38%),
+    linear-gradient(transparent 47%, hsla(0, 0%, 100%, 1) 47%, hsla(0, 0%, 100%, 1) 50%, transparent 50%),
+    linear-gradient(transparent 63%, hsla(0, 0%, 100%, 1) 63%, hsla(0, 0%, 100%, 1) 64%, transparent 64%),
+    linear-gradient(transparent 26.5%, hsla(178, 100%, 55%, 0.2) 27%, hsla(178, 100%, 55%, 0.2) 67%, transparent 67%),
+    linear-gradient(transparent 28%, hsla(0, 0%, 100%, 0.7) 28%, transparent 28.2%),
+    linear-gradient(transparent 29%, hsla(0, 0%, 100%, 0.7) 29%, transparent 29.5%),
+    linear-gradient(transparent 35%, hsla(0, 0%, 100%, 1) 35%, hsla(0, 0%, 100%, 1) 50%, transparent 50%),
+    linear-gradient(transparent 52%, hsla(0, 0%, 100%, 1) 52%, hsla(0, 0%, 100%, 1) 54%, transparent 54%),
+    linear-gradient(transparent 58%, hsla(0, 0%, 100%, 1) 58%, hsla(0, 0%, 100%, 1) 58.5%, transparent 58.5%),
+    linear-gradient(transparent 59%, hsla(0, 0%, 100%, 1) 59%, hsla(0, 0%, 100%, 1) 59.2%, transparent 59.2%),
+    linear-gradient(transparent 63%, hsla(0, 0%, 100%, 1) 63%, hsla(0, 0%, 100%, 1) 67%, transparent 67%),
+    linear-gradient(transparent 69%, hsla(0, 0%, 100%, 1) 69%, hsla(0, 0%, 100%, 1) 69.5%, transparent 69.5%),
+    linear-gradient(transparent 26.5%, hsla(178, 100%, 70%, 0.7) 27%, hsla(178, 100%, 70%, 0.7) 73%, transparent 73%),
+    linear-gradient(transparent 25.5%, hsla(145, 100%, 50%, 0.8) 26%, hsla(145, 100%, 50%, 0.8) 75%, transparent 75.5%),
+    linear-gradient(transparent 30%, hsla(166, 100%, 70%, 0.4) 30.5%, hsla(166, 100%, 70%, 0.4) 80%, transparent 80.5%),
+    linear-gradient(transparent 80%, hsla(163, 100%, 50%, 0.9) 80%, hsla(163, 100%, 50%, 0.9) 81.5%, transparent 82%),
+    linear-gradient(transparent 82%, hsla(0, 100%, 65%, 0.5) 82%, hsla(0, 100%, 65%, 0.5) 93%, transparent 93%),
+    linear-gradient(transparent 88%, hsla(220, 100%, 65%, 0.8) 88%, hsla(220, 100%, 65%, 0.8) 93%, transparent 93%),
+    linear-gradient(transparent 82.5%, hsla(0, 100%, 50%, 0.5) 82.5%, hsla(0, 100%, 50%, 0.5) 95%, transparent 95%)
+    ;
+  }
+
+  .navi_back--6{
+    /* main pink */
+    background:
+    linear-gradient(transparent 0%, hsla(0, 100%, 100%, 1) 3%, hsla(0, 100%, 100%, 1) 30%, transparent 33%),
+    linear-gradient(transparent 40%, hsla(0, 100%, 100%, 1) 41%, hsla(0, 100%, 100%, 1) 41.5%, transparent 42.5%),
+    linear-gradient(transparent 59%, hsla(0, 100%, 100%, 1) 61%, hsla(0, 100%, 100%, 1) 62%, transparent 64%),
+    linear-gradient(hsla(0, 0%, 95%, 0.6) 100%, transparent 0),
+    linear-gradient(hsla(297, 100%, 75%, 0.75) 100%, transparent 0),
+    linear-gradient(transparent 72%, hsla(42, 100%, 65%, 1) 72%, hsla(42, 100%, 65%, 1) 73%, transparent 73%),
+    linear-gradient(transparent 70%, hsla(42, 100%, 65%, 0.8) 71%, hsla(42, 100%, 65%, 0.8) 74%, transparent 75%),
+    linear-gradient(transparent 76%, hsla(132, 100%, 65%, 0.8) 76%, hsla(132, 100%, 65%, 0.8) 76.5%, transparent 76.5%),
+    linear-gradient(transparent 75%, hsla(223, 100%, 65%, 0.8) 76%, hsla(223, 100%, 65%, 0.8) 78%, transparent 79%),
+    linear-gradient(transparent 79%, hsla(112, 100%, 50%, 1) 79%, hsla(112, 100%, 50%, 1) 83%, transparent 83%),
+    linear-gradient(transparent 79%, hsla(112, 100%, 65%, 0.8) 80%, hsla(112, 100%, 65%, 0.8) 88%, transparent 90%),
+    linear-gradient(hsla(0, 0%, 95%, 0.6) 60%, transparent 80%)
+    ;
+  }
+
+  .navi_back--7{
+    /* main yellow */
+    background:
+    linear-gradient(transparent 5%, hsla(60, 100%, 80%, 0.7) 6%, hsla(60, 100%, 80%, 0.7) 40%, transparent 40%),
+    linear-gradient(transparent 10%, hsla(0, 100%, 100%, 1) 10%, hsla(0, 100%, 100%, 1) 10.5%, transparent 10.5%),
+    linear-gradient(transparent 13%, hsla(0, 100%, 100%, 1) 13%, hsla(0, 100%, 100%, 1) 13.5%, transparent 13.5%),
+    linear-gradient(transparent 20%, hsla(0, 100%, 100%, 1) 20%, hsla(0, 100%, 100%, 1) 20.5%, transparent 20.5%),
+    linear-gradient(transparent 26%, hsla(0, 100%, 100%, 1) 26%, hsla(0, 100%, 100%, 1) 27%, transparent 27.5%),
+    linear-gradient(transparent 5%, hsla(60, 100%, 70%, 0.7) 6%, hsla(60, 100%, 70%, 0.7) 38%, transparent 38%),
+    linear-gradient(transparent 7%, hsla(60, 100%, 80%, 0.9) 7%, hsla(60, 100%, 80%, 0.9) 35%, transparent 35%),
+    linear-gradient(transparent 73%, hsla(0, 100%, 100%, 1) 73.5%, hsla(0, 100%, 100%, 1) 73.8%, transparent 74.3%),
+    linear-gradient(transparent 75%, hsla(0, 100%, 100%, 1) 75.5%, hsla(0, 100%, 100%, 1) 76%, transparent 76.5%),
+    linear-gradient(transparent 78%, hsla(0, 100%, 100%, 1) 78.5%, hsla(0, 100%, 100%, 1) 80%, transparent 80.5%),
+    linear-gradient(transparent 82%, hsla(0, 100%, 100%, 1) 83%, hsla(0, 100%, 100%, 1) 84%, transparent 85%),
+    linear-gradient(transparent 91%, hsla(0, 100%, 100%, 1) 91.5%, hsla(0, 100%, 100%, 1) 93%, transparent 93.5%),
+    linear-gradient(transparent 96%, hsla(0, 100%, 100%, 1) 96.5%, hsla(0, 100%, 100%, 1) 97.5%, transparent 98%),
+    linear-gradient(transparent 70%, hsla(297, 100%, 80%, 0.3) 71%, hsla(297, 100%, 80%, 0.3) 90%, transparent 91%),
+    linear-gradient(transparent 56%, hsla(0, 100%, 100%, 1) 56.5%, hsla(0, 100%, 100%, 1) 57%, transparent 57.5%),
+    linear-gradient(transparent 58%, hsla(0, 100%, 100%, 1) 58.2%, hsla(0, 100%, 100%, 1) 58.7%, transparent 59%),
+    linear-gradient(transparent 55%, hsla(60, 100%, 80%, 0.9) 55.5%, hsla(60, 100%, 80%, 0.9) 59%, transparent 59.5%),
+    linear-gradient(transparent 40%, hsla(0, 100%, 100%, 1) 41%, hsla(0, 100%, 100%, 1) 44%, transparent 45%),
+    linear-gradient(transparent 45%, hsla(0, 100%, 100%, 1) 45.5%, hsla(0, 100%, 100%, 1) 46.5%, transparent 47.5%),
+    linear-gradient(transparent 48%, hsla(0, 100%, 100%, 1) 48.5%, hsla(0, 100%, 100%, 1) 48.7%, transparent 49.2%),
+    linear-gradient(transparent 49%, hsla(0, 100%, 100%, 1) 50%, hsla(0, 100%, 100%, 1) 52%, transparent 53%),
+    linear-gradient(transparent 53%, hsla(0, 100%, 100%, 1) 55%, hsla(0, 100%, 100%, 1) 78%, transparent 79%),
+    linear-gradient(hsla(297, 100%, 75%, 0.6) 100%, transparent 0),
+    linear-gradient(transparent 3%, hsla(60, 100%, 50%, 0.6) 3%, hsla(60, 100%, 50%, 0.6) 4%, transparent 4%),
+    linear-gradient(transparent 0%, hsla(60, 100%, 50%, 0.5) 2%, hsla(60, 100%, 50%, 0.5) 40%, transparent 42%),
+    linear-gradient(hsla(0, 100%, 50%, 0.5) 40%, transparent 40%)
+    ;
+  }
+
+  .navi_back--8{
+    /* ootoro */
+    background:
+    linear-gradient(transparent 24%, hsla(0, 100%, 100%, 1) 24.5%,  hsla(0, 100%, 100%, 1) 28%, transparent 28.5%),
+    linear-gradient(transparent 30%, hsla(0, 100%, 100%, 1) 30%,  hsla(0, 100%, 100%, 1) 30.5%, transparent 30.5%),
+    linear-gradient(transparent 33%, hsla(0, 100%, 100%, 1) 34%,  hsla(0, 100%, 100%, 1) 35%, transparent 36%),
+    linear-gradient(transparent 50%, hsla(0, 100%, 100%, 1) 50%,  hsla(0, 100%, 100%, 1) 57%, transparent 57%),
+    linear-gradient(transparent 59%, hsla(0, 100%, 100%, 1) 60.5%,  hsla(0, 100%, 100%, 1) 62.5%, transparent 63.5%),
+    linear-gradient(transparent 85%, hsla(0, 100%, 100%, 1) 86%,  hsla(0, 100%, 100%, 1) 92%, transparent 93%),
+    linear-gradient(transparent 2.5%, hsla(322, 100%, 66%, 0.4) 6%, hsla(322, 100%, 66%, 0.4) 20%, transparent 21%),
+     linear-gradient(transparent 3%, hsla(0, 100%, 100%, 0.6) 3.5%,  hsla(0, 100%, 100%, 0.6) 4%, transparent 4.5%),
+     linear-gradient(transparent 8%, hsla(0, 100%, 100%, 0.6) 8.5%,  hsla(0, 100%, 100%, 0.6) 10%, transparent 10.5%),
+     linear-gradient(transparent 10.5%, hsla(0, 100%, 100%, 0.6) 11%,  hsla(0, 100%, 100%, 0.6) 11.3%, transparent 11.8%),
+     linear-gradient(transparent 18%, hsla(0, 100%, 100%, 0.6) 18%,  hsla(0, 100%, 100%, 0.6) 19.5%, transparent 19.5%),
+    linear-gradient(transparent 21%, hsla(322, 100%, 66%, 0.4) 21.5%, hsla(322, 100%, 66%, 0.4) 40%, transparent 41%),
+      linear-gradient(transparent 22%, hsla(0, 100%, 100%, 0.6) 22.5%,  hsla(0, 100%, 100%, 0.6) 30%, transparent 30.5%),
+      linear-gradient(transparent 39%, hsla(0, 100%, 100%, 0.6) 39.5%,  hsla(0, 100%, 100%, 0.6) 42%, transparent 42.5%),
+    linear-gradient(transparent 44%, hsla(0322, 100%, 66%, 0.4) 46%, hsla(322, 100%, 66%, 0.4) 80%, transparent 100%),
+      linear-gradient(transparent 50%, hsla(0, 100%, 100%, 0.6) 60%, transparent 60.5%),
+      linear-gradient(transparent 63%, hsla(0, 100%, 100%, 0.6) 65%, hsla(0, 100%, 100%, 0.6) 70%, transparent 72%),
+    linear-gradient(hsla(347, 100%, 58%, 0.8) 100%, transparent 0)
+    ;
+  }
+
+  .navi_back--9{
+    /* mian red back & white center */
+    background:
+    linear-gradient(transparent 16%, hsla(58, 74%, 50%, 0.2) 16%, hsla(58, 74%, 50%, 0.2) 16.5%, transparent 16.5%),
+    linear-gradient(transparent 17%, hsla(58, 74%, 50%, 0.2) 17%, hsla(58, 74%, 50%, 0.2) 17.5%, transparent 17.5%),
+    linear-gradient(transparent 15%, hsla(0, 100%, 100%, 1) 16%, hsla(0, 100%, 100%, 1) 67%, transparent 68%),
+    linear-gradient(transparent 17%, hsla(58, 74%, 50%, 0.2) 17%, hsla(58, 74%, 50%, 0.2) 68%, transparent 69%),
+    linear-gradient(transparent 13%, hsla(0, 100%, 100%, 0.9) 15%, hsla(0, 100%, 100%, 0.9) 70%, transparent 72%),
+    linear-gradient(transparent 72%, hsla(0, 100%, 100%, 1) 72.5%, hsla(0, 100%, 100%, 1) 74%, transparent 74.5%),
+    linear-gradient(transparent 74.5%, hsla(0, 100%, 100%, 1) 74.5%, hsla(0, 100%, 100%, 1) 74.8%, transparent 75.3%),
+    linear-gradient(transparent 86%, hsla(0, 100%, 100%, 1) 86.5%, hsla(0, 100%, 100%, 1) 87%, transparent 87.5%),
+    linear-gradient(hsla(344, 100%, 56%,0.6) 100%, transparent 0),
+    linear-gradient(transparent 3%, hsla(0, 100%, 100%, 0.7) 4%, hsla(0, 100%, 100%, 0.7) 7%, transparent 8%),
+      linear-gradient(transparent 4%, hsla(0, 100%, 100%, 1) 4%, hsla(0, 100%, 100%, 1) 6%, transparent 6%),
+    linear-gradient(transparent 10%, hsla(0, 100%, 100%, 0.7) 11%, hsla(0, 100%, 100%, 0.7) 12%, transparent 13%),
+    linear-gradient(transparent 80%, hsla(0, 100%, 100%, 0.5) 80.5%, hsla(0, 100%, 100%, 0.5) 88%, transparent 90%)
+    ;
+  }
+
+  /* state (navi open) */
+  .header__navi.is-opened .navi_back--1{
+    animation: glitch-back1 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--2{
+    animation: glitch-back2 .5s linear 0s 1 forwards;
+
+  }
+  .header__navi.is-opened .navi_back--3{
+    animation: glitch-back3 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--4{
+    animation: glitch-back4 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--5{
+    animation: glitch-back5 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--6{
+    animation: glitch-back6 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--7{
+    animation: glitch-back7 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--8{
+    animation: glitch-back8 .5s linear 0s 1 forwards;
+  }
+  .header__navi.is-opened .navi_back--9{
+    animation: glitch-back9 .5s linear 0s 1 forwards;
+  }
+
+}
+/* ------------------------------------
+  END header for SP
+------------------------------------ */
+
+/* ------------------------------------
+  list-item animation
+------------------------------------ */
+@keyframes glitch {
+  0%{
+    opacity: 0;
+  }
+  5%{
+    transform: skewX(-30deg);
+    opacity: 1;
+  }
+  7%{
+    transform: skewX(0deg);
+    opacity: 0;
+  }
+  15%{
+    transform: skewX(-30deg);
+    opacity: 1;
+  }
+  18%{
+    transform: skewX(0deg);
+    opacity: 0;
+  }
+  20%{
+    transform: translate(-.5em, .5em);
+    opacity: 1;
+  }
+  25%{
+    transform: translate(0,0);
+  }
+  30%{
+    transform: translate(0,0);
+    opacity: 0;
+  }
+  32%{
+    transform: translate(.5em, 0);
+    opacity: 1;
+  }
+  35%{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  43%{
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  45%{
+    transform: translate(-.5em, -.5em);
+    opacity: 1;
+  }
+  50%{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  65%{
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  70%{
+    transform: translate(1em, -.5em);
+    opacity: 1;
+  }
+  75%{
+    transform: translate(1em, 0);
+    opacity: 0;
+  }
+  85%{
+    opacity: 0;
+  }
+  90%{
+    transform: translate(-.5em, 0) skewX(30deg);
+    opacity: 1;
+  }
+  95%{
+    transform: translate(0, 0) skewX(30deg);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch1 {
+  /* 1st move */
+  0%{
+    transform: translate(1em, 0) skewX(-30deg);
+    -webkit-transform: translate(1em, 0) skewX(-30deg);
+    opacity: 1;
+  }
+  5%{
+    transform: translate(1em, 0) skewX(-30deg);
+    -webkit-transform: translate(1em, 0) skewX(-30deg);
+    opacity: 0;
+  }
+  /* 2nd move */
+  6%{
+    transform: translate(.5em, 0);
+    -webkit-transform: translate(.5em, 0);
+  }
+  7%{
+    transform: translate(.5em, 0);
+    -webkit-transform: translate(.5em, 0);
+    opacity: 1;
+  }
+  10%{
+    transform: translate(.5em, 0);
+    -webkit-transform: translate(.5em, 0);
+    opacity: 0
+  }
+  /* 3rd move */
+  11%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+  }
+  15%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    opacity: 1;
+  }
+  20%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    opacity: 0;
+  }
+  /* 4th move */
+  21%{
+    transform: translate(-.5em, .5em);
+    -webkit-transform: translate(-.5em, .5em);
+  }
+  25%{
+    transform: translate(-.5em, .5em);
+    -webkit-transform: translate(-.5em, .5em);
+    opacity: 1;
+  }
+  30%{
+    transform: translate(-.5em, .5em);
+    -webkit-transform: translate(-.5em, .5em);
+    opacity: 0
+  }
+  /* 5th move */
+  31%{
+    transform: translate(-.5em, .5em) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) skewX(-30deg);
+  }
+  38%{
+    transform: translate(-.5em, .5em) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) skewX(-30deg);
+    opacity: 1;
+  }
+  40%{
+    transform: translate(-.5em, .5em) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) skewX(-30deg);
+    opacity: 0;
+  }
+  42%{
+    transform: translate(-.5em, .5em) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) skewX(-30deg);
+    opacity: 1;
+  }
+  48%{
+    transform: translate(-.5em, .5em) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) skewX(-30deg);
+    opacity: 0;
+  }
+  /* 6th move */
+  49%{
+    transform: translate(-.5em, .5em) scale(1.5);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5);
+  }
+  55%{
+    transform: translate(-.5em, .5em) scale(1.5);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5);
+    opacity: 1;
+  }
+  60%{
+    transform: translate(-.5em, .5em) scale(1.5);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5);
+    opacity: 0;
+  }
+  62%{
+    transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    opacity: 0;
+  }
+  65%{
+    transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    opacity: 1;
+  }
+  70%{
+    transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(-.5em, .5em) scale(1.5) skewX(-30deg);
+    opacity: 0;
+  }
+  /* 7th move */
+  71%{
+    transform: translate(0, -.5em);
+    -webkit-transform: translate(0, -.5em);
+    opacity: 0;
+  }
+  79%{
+    transform: translate(0, -.5em);
+    -webkit-transform: translate(0, -.5em);
+    opacity: 1;
+  }
+  90%{
+    transform: translate(0, -.5em);
+    -webkit-transform: translate(0, -.5em);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch2 {
+  /* 1st move */
+  0%{
+    transform: translate(.5em, -.5em) skewX(-30deg);
+    -webkit-transform: translate(.5em, -.5em) skewX(-30deg);
+    opacity: 1;
+  }
+  5%{
+    transform: translate(.5em, -.5em) skewX(-30deg);
+    -webkit-transform: translate(.5em, -.5em) skewX(-30deg);
+    opacity: 0;
+  }
+  /* 2nd move */
+  6%{
+    transform: translate(.5em, -.5em);
+    -webkit-transform: translate(.5em, -.5em);
+  }
+  7%{
+    transform: translate(.5em, -.5em);
+    -webkit-transform: translate(.5em, -.5em);
+    opacity: 1;
+  }
+  10%{
+    transform: translate(.5em, -.5em);
+    -webkit-transform: translate(.5em, -.5em);
+    opacity: 0
+  }
+  /* 3rd move */
+  11%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+  }
+  21%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+  }
+  25%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    opacity: 1;
+  }
+  30%{
+    transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    opacity: 0
+  }
+  /* 4th move */
+  31%{
+    transform: translate(-.5em, -.5em);
+    -webkit-transform: translate(-.5em, -.5em);
+  }
+  33%{
+    transform: translate(-.5em, -.5em);
+    -webkit-transform: translate(-.5em, -.5em);
+    opacity: 1;
+  }
+  38%{
+    transform: translate(-.5em, -.5em);
+    -webkit-transform: translate(-.5em, -.5em);
+    opacity: 0;
+  }
+  40%{
+    transform: translate(-.5em, -.5em);
+    -webkit-transform: translate(-.5em, -.5em);
+    opacity: 1;
+  }
+  45%{
+    transform: translate(-.5em, -.5em);
+    -webkit-transform: translate(-.5em, -.5em);
+    opacity: 0;
+  }
+  /* 5th move */
+  46%{
+    transform: translate(.5em, -.5em) ;
+    -webkit-transform: translate(.25em, .25em) scale(1.5);
+  }
+  55%{
+    transform: translate(.25em, .25em) scale(1.5);
+    -webkit-transform: translate(.25em, .25em) scale(1.5);
+    opacity: 1;
+  }
+  60%{
+    transform: translate(.25em, .25em) scale(1.5);
+    -webkit-transform: translate(.25em, .25em) scale(1.5);
+    opacity: 0;
+  }
+  62%{
+    transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    opacity: 0;
+  }
+  65%{
+    transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    opacity: 1;
+  }
+  70%{
+    transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    -webkit-transform: translate(.25em, .25em) scale(1.5) skewX(-30deg);
+    opacity: 0;
+  }
+  /* 7th move */
+  71%{
+    transform: translate(.25em, .25em);
+    -webkit-transform: translate(.25em, .25em);
+    opacity: 0;
+  }
+  79%{
+    transform: translate(.25em, .25em);
+    -webkit-transform: translate(.25em, .25em);
+    opacity: 1;
+  }
+  90%{
+    transform: translate(.25em, .25em);
+    -webkit-transform: translate(.25em, .25em);
+    opacity: 0;
+  }
+}
+
+/* ------------------------------------
+  header animation
+------------------------------------ */
+@keyframes navi-show {
+  0%{top:0;}
+  80%{background: inherit;}
+  85%{
+    background: #000;
+  }
+  100%{
+    top: 0;
+    background: #000;
+  }
+}
+
+@keyframes item-fade-in {
+  95%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+@keyframes glitch-back1 {
+  19%{opacity: 0;}
+  20%{opacity: 1;}
+  22%{opacity: 0;}
+
+  23%{opacity: 0;}
+  24%{opacity: 1;}
+}
+
+@keyframes glitch-back2 {
+  21%{opacity: 0;}
+  22%{opacity: 1;}
+  24%{opacity: 0;}
+
+  25%{opacity: 0;}
+  26%{opacity: 1;}
+  27%{opacity: 0;}
+
+  53%{opacity: 0;}
+  54%{opacity: 1;}
+  55%{opacity: 0;}
+
+  70%{opacity: 0;}
+  71%{opacity: 1;}
+  73%{opacity: 0;}
+}
+
+@keyframes glitch-back3 {
+  29%{opacity: 0;}
+  30%{opacity: 1;}
+  32%{opacity: 0;}
+}
+
+@keyframes glitch-back4 {
+  31%{opacity: 0;}
+  32%{opacity: 1;}
+  34%{opacity: 0;}
+
+  35%{opacity: 0;}
+  36%{opacity: 1;}
+  41%{opacity: 0;}
+}
+
+@keyframes glitch-back5 {
+  33%{opacity: 0;}
+  34%{opacity: 1;}
+  35%{opacity: 1;}
+  36%{opacity: 0;}
+
+  40%{opacity: 0;}
+  41%{opacity: 1;}
+  42%{opacity: 1;}
+  43%{opacity: 0;}
+  44%{opacity: 1;}
+  47%{opacity: 1;}
+  48%{opacity: 0;}
+
+  89%{opacity: 0;}
+  90%{opacity: 1;}
+  94%{opacity: 1;}
+  95%{opacity: 0;}
+}
+
+@keyframes glitch-back6 {
+  49%{opacity: 0;}
+  50%{opacity: 1;}
+  51%{opacity: 0;}
+  52%{opacity: 1;}
+  53%{opacity: 1;}
+  54%{opacity: 0;}
+
+  72%{opacity: 0;}
+  73%{opacity: 1;}
+  76%{opacity: 1;}
+  77%{opacity: 0;}
+}
+
+@keyframes glitch-back7 {
+  54%{opacity: 0;}
+  55%{opacity: 1;}
+  56%{opacity: 1;}
+  57%{opacity: 0;}
+
+  58%{opacity: 0;}
+  59%{opacity: 1;}
+  60%{opacity: 1;}
+  61%{opacity: 0;}
+
+  76%{opacity: 0;}
+  77%{opacity: 1;}
+  81%{opacity: 1;}
+  82%{opacity: 0;}
+}
+
+@keyframes glitch-back8 {
+  56%{opacity: 0;}
+  57%{opacity: 1;}
+  58%{opacity: 1;}
+  59%{opacity: 0;}
+
+  60%{opacity: 0;}
+  61%{opacity: 1;}
+  63%{opacity: 1;}
+  64%{opacity: 0;}
+
+  65%{opacity: 0;}
+  66%{opacity: 1;}
+  67%{opacity: 1;}
+  68%{opacity: 0;}
+
+  85%{opacity: 0;}
+  86%{opacity: 1;}
+  89%{opacity: 1;}
+  90%{opacity: 0;}
+}
+
+@keyframes glitch-back9 {
+  63%{opacity: 0;}
+  64%{opacity: 1;}
+  65%{opacity: 1;}
+  66%{opacity: 0;}
+
+  67%{opacity: 0;}
+  69%{opacity: 1;}
+  70%{opacity: 1;}
+  71%{opacity: 0;}
+
+  81%{opacity: 0;}
+  82%{opacity: 1;}
+  85%{opacity: 1;}
+  86%{opacity: 0;}
+}

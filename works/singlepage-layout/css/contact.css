@@ -1,0 +1,66 @@
+.contact {
+  background-color: #383634;
+  color: #FFF;
+  padding: 80px 0 80px;;
+  text-align: center;
+  /* margin: 80px 0; */
+}
+
+.works .heading::before,
+.works .heading::after{
+  border-color: #FFF;
+}
+
+.contact-form{
+  list-style: none;
+  margin: 50px auto 0;
+  width: 50%;
+}
+
+/* BEGIN 入力項目 */
+.contact-form input[type=text],
+.contact-form textarea{
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 0;
+  background-color: rgba(255,255,255,0.05);
+  color: inherit;
+  display: block;
+  margin-bottom: 10px;
+  outline: none;
+  padding: 15px;
+  width: 100%;
+}
+
+.contact-form textarea{
+  height: 150px;
+}
+
+.contact-form input[type=text]::placeholder,
+.contact-form textarea::placeholder{
+  color: rgb(255,255,255,0.75);
+}
+
+.contact-form input[type=text]:focus,
+.contact-form textarea:focus{
+  box-shadow: 0 0 8px rgba(255,255,255,0.5) inset;
+}
+/* END 入力項目 */
+
+/* BEGIN SENDボタン */
+.contact-form input[type=submit] {
+  background-color: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 5px;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  outline: none;
+  padding: 15px;
+  width: 200px;
+}
+
+.contact-form input[type=submit]:hover{
+  background-color: rgba(255,255,255,0.05);
+}
+/* END SENDボタン */

@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+.area_graph-scene{
+  perspective: 3000px;
+}
+
+.skill-title{
+  font-size: .5em;
+}
+
+.backend-area{
+  margin-bottom: 3em;
+}
+
+
+.bar-wrapper{
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+/*-------------------------------------
+BEGIN bar style
+-------------------------------------*/
+/* BEGIN common */
+.bar{
+  position: relative;
+  margin: 1em 0;
+  padding: .25em;
+  text-align: left;
+  transform: rotateX(-10deg) translateZ(1em); /*Egde doesn't fire mouseenter event without translateZ*/
+  transform-origin: left top;
+  transform-style: preserve-3d;
+  transition: .5s;
+  min-height: 48px;
+  width: 100%;
+}
+
+.bar::before,
+.bar::after{
+  position: absolute;
+    top: 0;
+  content: '';
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.bar::before{
+    left: 0;
+  background: inherit;
+  transform: rotateX(-90deg);
+  transform-origin: top;
+}
+
+.bar::after{
+    right: 0;
+  background: inherit;
+  transform: rotateY(-90deg);
+  transform-origin: right;
+  width: 48px;
+}
+/* END common */
+
+/* proficiency's unique style */
+.backend-area .bar--proficiency{
+  background: rgba(50, 60, 230, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(50, 60, 230, 1);
+}
+
+.backend-area .bar--proficiency::before{
+  box-shadow: inset 0 -5px 0 1px rgba(50, 60, 230, 1);
+}
+
+.frontend-area .bar--proficiency{
+  background: rgba(255, 105, 180, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 105, 180, 1);
+}
+
+.frontend-area .bar--proficiency::before{
+  box-shadow: inset 0 -5px 0 1px rgba(255, 105, 180, 1);
+}
+
+/* interest's unique style */
+.bar--interest{
+  background: rgba(245, 255, 80, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255,255,0, 1);
+}
+
+.bar--interest::before{
+  box-shadow: inset 0 -5px 0 1px rgba(255,255,0, 1);
+}
+/*-------------------------------------
+END bar style
+-------------------------------------*/
+
+/*-------------------------------------
+ BEGIN each skills' bar style
+-------------------------------------*/
+.bar--100{
+  width: 100%;
+}
+.bar--90{
+  width: 90%;
+}
+.bar--80{
+  width: 80%;
+}
+.bar--70{
+  width: 70%;
+}
+.bar--60{
+  width: 60%;
+}
+.bar--50{
+  width: 50%;
+}
+.bar--40{
+  width: 40%;
+}
+.bar--30{
+  width: 30%;
+}
+.bar--20{
+  width: 20%;
+}
+.bar--10{
+  width: 10%;
+}
+.bar--0{
+  width: 0%;
+}
+/*-------------------------------------
+ END each skills' bar style
+-------------------------------------*/
+
+.bar_description{
+  display: none;
+  font-size: .5em;
+  line-height: 2;
+}
+
+/* state (hover on bar) */
+.bar.is-protruded{
+  transform: translateZ(6em);
+  width: 100%;
+}

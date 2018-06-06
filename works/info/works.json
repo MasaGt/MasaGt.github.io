@@ -1,0 +1,31 @@
+{
+  "works": {
+    "work1": {
+      "title": "SAMPLE_01",
+      "desc": "「HTML5\/CSS3 モダンコーディング」に記載されているサンプルサイトを自分で実装",
+      "skills": ["HTML5", "CSS3","masonry"],
+      "link": "works\/grid-layout\/index.html",
+      "imageDir": "images\/portfolios\/",
+      "images": ["work01_01.png", "work01_02.png", "work01_03.png"],
+      "modalImage": "work01.gif"
+    },
+    "work2": {
+      "title": "SAMPLE_02",
+      "desc": "「HTML5\/CSS3 モダンコーディング」に記載されているサンプルサイトを自分で実装",
+      "skills": ["HTML5", "CSS3"],
+      "link": "works\/singlepage-layout\/index.html",
+      "imageDir": "images\/portfolios\/",
+      "images": ["work02_01.png", "work02_02.png", "work02_03.png"],
+      "modalImage": "work02.gif"
+    },
+    "work3": {
+      "title": "NEXT WORK",
+      "desc": "I am in the middle of looking for the next theme.",
+      "skills": [],
+      "link": "",
+      "imageDir": "images\/portfolios\/",
+      "images": ["comingsoon01.png", "comingsoon02.png", "comingsoon03.png"],
+      "modalImage": "comingsoon03.png"
+    }
+  }
+}

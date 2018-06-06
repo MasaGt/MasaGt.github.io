@@ -1,0 +1,209 @@
+@charset "UTF-8";
+
+/*-------------------------------------
+  pages--works
+-------------------------------------*/
+.work-wrapper{
+  margin-bottom: 4em;
+  position: relative;
+}
+
+.work--right{
+  text-align: right;
+}
+
+.work--left{
+  text-align: left;
+}
+
+.work--center{
+  text-align: center;
+}
+
+.work_title{
+  border: 2px solid;
+  cursor: pointer;
+  display: inline-block;
+  font-size:  .75em;
+  margin-bottom: 2em;
+  padding: .5em 1em;
+  text-shadow: 0 .05em .5em hsla(192, 100%, 59%, 1)
+  ,.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,-.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,0 -.05em .5em hsla(192, 100%, 59%, 1);
+  transition: .5s;
+}
+/* state */
+.work_title:hover{
+  color: #000;
+  background: hsla(192, 100%, 59%, 1);
+}
+
+.work_img-area{
+  position: relative;
+}
+
+.work_img1 img,
+.work_img2 img,
+.work_img3 img{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.work_img1,
+.work_img2,
+.work_img3{
+  background-size: cover;
+  background-position: center;
+  border: 2px solid hsla(192, 100%, 59%, 1);
+}
+
+/* state */
+.work_img1.is-closed,
+.work_img2.is-closed,
+.work_img3.is-closed{
+  width: 0;
+  border: none;
+}
+
+.work_img1{
+  width: 30%;
+  padding-top: 30%;
+  position: absolute;
+  z-index: 3;
+  transition: width .5s;
+}
+
+.work_img2{
+  width: 50%;
+  padding-top: 35.5%;
+  position: absolute;
+  z-index: 2;
+  transition: width 1.5s;
+}
+
+.work_img3{
+  width: 80%;
+  padding-top: 49.6%;
+  position: relative;
+  z-index: 1;
+  transition: width 1s;
+}
+
+/* right */
+.work--right .work_img1{
+  bottom: -2em;
+}
+
+.work--right .work_img2{
+  top: 1em;
+  left: 3%;
+}
+
+.work--right .work_img3{
+  margin-left: 20%;
+}
+
+/* center */
+.work--center .work_img1{
+  top: 20%;
+}
+
+.work--center .work_img2{
+  right: 0;
+  bottom: -2em;
+}
+
+.work--center .work_img3{
+  margin: 0 auto;
+}
+
+/* left */
+.work--left .work_img1{
+  right: 0;
+  margin-top: -1em;
+}
+
+.work--left .work_img2{
+  left: 20%;
+  bottom: -2em;
+}
+
+.work_img1:hover,
+.work_img2:hover,
+.work_img3:hover{
+  z-index: 4;
+}
+
+/*-------------------------------------
+  hover effect is only for PC
+-------------------------------------*/
+@media screen and (min-width: 960px){
+
+  .work_img1,
+  .work_img2,
+  .work_img3{
+    border: none
+  }
+
+  .work_img1::after,
+  .work_img2::after,
+  .work_img3::after{
+    background: #000;
+    border: 2px solid hsla(192, 100%, 59%, 1);
+    content: '';
+    display: block;
+    position: absolute;
+    transition: background .25s;
+      top: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .work_img1:hover::after,
+  .work_img2:hover::after,
+  .work_img3:hover::after{
+    background: transparent;
+  }
+
+  .work_img1.is-closed::after,
+  .work_img2.is-closed::after,
+  .work_img3.is-closed::after{
+    border: none;
+  }
+}
+
+/*-------------------------------------
+  pages--works for SP
+-------------------------------------*/
+@media screen and (max-width: 600px){
+  .work_img1{
+    display: none;
+  }
+
+  .work_img2{
+    width: 70%;
+    padding-top: 49.7%;
+  }
+
+  .work_img3{
+    width: 100%;
+    padding-top: 62.5%;
+  }
+
+  .work--right .work_img2{
+    top: -1em;
+  }
+  .work--right .work_img3{
+    margin: 0 auto;
+  }
+
+  .work--right .work_img2{
+    left: -18px;
+  }
+
+  .work--center .work_img2{
+    right: -18px;
+  }
+}

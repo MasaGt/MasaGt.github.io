@@ -1,0 +1,430 @@
+@charset "UTF-8";
+
+/*-------------------------------------
+  general
+-------------------------------------*/
+html{
+  background: #000;
+  font-size: 10px;
+}
+*,*::before,
+*::after{
+  box-sizing: border-box;
+  list-style: none;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+
+body{
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* state */
+/* prevent to be scrollable when a modal is shown*/
+html.is-unscrollable,
+body.is-unscrollable{
+  overflow: hidden;
+}
+
+/*-------------------------------------
+  general for SP
+-------------------------------------*/
+@media screen and (max-width: 600px) {
+  body{
+    min-width: 320px;
+  }
+}
+
+/*-------------------------------------
+  pages
+*-------------------------------------*/
+.pages{
+  font-size: 32px;
+  margin-left: 180px;
+  padding: 80px 56px;
+}
+.pages_container{
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.pages_heading{
+  font-size: 1em;
+  margin-bottom: 1em;
+}
+
+/*-------------------------------------
+  pages for Tablet
+-------------------------------------*/
+@media screen and (max-width: 959px){
+  .pages{
+    padding:64px 40px;
+  }
+}
+/*-------------------------------------
+  pages for SP
+-------------------------------------*/
+@media screen and (max-width: 600px){
+  .pages{
+    font-size: 28px;
+    margin: 0;
+    padding: 56px 32px;
+  }
+
+  .pages_heading{
+    text-align: center;
+  }
+}
+
+/*-------------------------------------
+  hero-page
+-------------------------------------*/
+.pages--hero{
+  height: 100vh;
+}
+
+.noscript-msg{
+  border: 5px solid rgba(200, 0, 0, .8);
+  font-size: 1em;
+  line-height: 1.5;
+  text-align: center;
+  text-shadow: 0 .1rem 1.5rem rgba(200, 0, 0, .8)
+  ,.1rem 0 1.5rem rgba(200, 0, 0, .8)
+  ,-.1rem 0 1.5rem rgba(200, 0, 0, .8)
+  ,0 -.1rem 1.5rem rgba(200, 0, 0, .8);
+}
+
+.hero_logo{
+  height: 100%;
+  width: 100%;
+}
+.path{
+  fill: #ffffff;
+  fill-opacity: 0;
+  stroke:white;
+  stroke-opacity: 0;
+  stroke-width:5;
+}
+
+/* state */
+.path.is-ready{
+  stroke-opacity: 1;
+}
+
+/*-------------------------------------
+  hero-page for SP
+-------------------------------------*/
+/* TODO may be do not need. */
+
+/*-------------------------------------
+  pages--about
+-------------------------------------*/
+.about_name{
+  font-size: .75em;
+  display: inline-block;
+  margin: 0 1em 1em 0;
+}
+
+.about_desc{
+  font-size: .5em;
+  line-height: 2;
+  margin-bottom: 2em;
+}
+
+/*-------------------------------------
+  pages--skills
+-------------------------------------*/
+.area_heading{
+  margin-bottom: .75em;
+}
+.area__title{
+  display: inline-block;
+  font-size: .75em;
+}
+
+.legend{
+  display: inline-block;
+  font-size: .5em;
+  padding: .25em;
+  vertical-align: middle;
+}
+
+.backend-area .legend--proficiency{
+  background: rgba(50, 60, 230, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(50, 60, 230, 1);
+}
+
+.frontend-area .legend--proficiency{
+  background: rgba(255, 105, 180, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255, 105, 180, 1);
+}
+
+.legend--interest{
+  background: rgba(245, 255, 80, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(255,255,0, 1);
+}
+
+/*-------------------------------------
+  pages--works style is other file (work.css)
+-------------------------------------*/
+
+/*-------------------------------------
+  pages--contact
+-------------------------------------*/
+.pages--contact .contact-msg{
+  font-size: .75em;
+  line-height: 2;
+  margin: 4em 0;
+}
+.mail-button{
+  margin: 3em auto;
+  text-align: center;
+  transition: .5s;
+}
+.mail-button > a{
+  border: 2px solid;
+  color: inherit;
+  display: inline-block;
+  font-size: .75em;
+  padding: .5em;
+  text-shadow: 0 .05em .5em hsla(192, 100%, 59%, 1)
+  ,.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,-.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,0 -.05em .5em hsla(192, 100%, 59%, 1);
+  transition: .5s;
+}
+
+.mail-button > a:hover{
+  background: hsla(192, 100%, 59%, 1);
+  color: #000;
+}
+
+/*-------------------------------------
+  pages--contact for SP
+-------------------------------------*/
+
+/*-------------------------------------
+  footer
+-------------------------------------*/
+.footer{
+  font-size: 24px;
+  margin: 2em 0;
+  text-align: center;
+}
+
+.copy{
+  font-size: 1em;
+}
+
+/*-------------------------------------
+  footer for SP
+-------------------------------------*/
+@media screen and (max-width: 600px){
+  .footer{
+    font-size: 18px;
+  }
+}
+/*-------------------------------------
+  modal
+-------------------------------------*/
+.modal-base,.modal_wrapper,
+.modal_work-container,.modal_btn-wrapper{
+  display: none;
+}
+
+.modal_wrapper.is-set{
+  display: block;
+}
+
+.modal-base{
+  background: rgba(0, 0, 0, .7);
+  background-image: linear-gradient(hsla(192, 100%, 59%, .3) 1px, transparent 0),
+  linear-gradient(90deg, hsla(192, 100%, 59%, .3) 1px, transparent 0);
+  background-size: 20px 20px;
+
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  z-index: 1000;
+}
+
+.modal_wrapper{
+  font-size: 32px;
+  margin: 0 5%;
+  margin-top: 5%;
+  width: 90%;
+}
+
+.modal_work-container {
+  opacity: .8;
+  text-shadow: 0 .05em .5em hsla(192, 100%, 59%, 1)
+  ,.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,-.05em 0 .5em hsla(192, 100%, 59%, 1)
+  ,0 -.05em .5em hsla(192, 100%, 59%, 1);
+  width: 100%;
+}
+
+
+.modal_work-title{
+  font-size: 1em;
+  margin-bottom: .625em;
+}
+
+.modal_skill-tag{
+  border: 2px solid;
+  display: inline-block;
+  font-size: .5em;
+  padding: .3125em;
+  margin-bottom: 1.25em;
+  margin-right: .625em;
+}
+
+.modal_work-img{
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+}
+
+.modal_work-desc{
+  font-size: .625em;
+  line-height: 2;
+  margin: 1em 0;
+}
+
+.modal_work-link{
+  width: max-content;
+}
+
+.modal_work-link a{
+  border: 2px solid ;
+  color: inherit;
+  display: inline-block;
+  font-size: .625em;
+  padding: .25em;
+  text-decoration: none;
+  transition: .5s;
+}
+
+.modal_work-link > a:hover{
+  color: rgba(0, 0, 0, .8);
+  background: hsla(192, 100%, 59%, .8);
+}
+
+.modal_btn-wrapper{
+  position: fixed;
+    top: calc(60px - 60px/2);
+    right: 20px;
+  height: 60px;
+  width: 60px;
+}
+
+.modal_close-btn{
+  position: absolute;
+    top: 0;
+    right: 0;
+  background: rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  border: solid 2px rgba(255, 255, 255, .8);
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  transition: .25s;
+  height: 58px;
+  width: 58px;
+}
+
+.modal_close-btn::before{
+  position: absolute;
+  background: hsla(192, 100%, 59%, .8);
+  border-radius: 5px;
+  box-shadow: 0 0 1px 1px hsla(192, 100%, 59%, .8);
+  content: '';
+  display: block;
+  /* transX: (parentHeight - thisHeight) /2 */
+  /* transY: (parentWidth /2) - (thisWidth /2) */
+  transform: translateX(calc((58px - 54px) / 2)) translateY(calc((58px/2) - (9px/2)));
+  transform-origin: center;
+  transition: .25s;
+  height: 5px;
+  width: 50px;
+}
+
+.modal_close-btn::after{
+  position: absolute;
+  color: rgba(0, 0, 0, .8);
+  content: 'close';
+  display: block;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 58px;
+  opacity: 0;
+  /* transform: translateY(-50px); */
+  transition: .25s;
+  height: 100%;
+  width: 100%;
+}
+
+.modal_close-btn:hover{
+  border-color: rgba(0, 0, 0, .8);
+}
+
+.modal_close-btn:hover::before{
+  border-radius: 50%;
+  opacity: .8;
+  transform: translateX(0px) translateY(0px) rotate(180deg);
+  height: 100%;
+  width: 100%;
+}
+
+.modal_close-btn:hover::after{
+  opacity: 1;
+  /* transform: translateY(0px); */
+}
+/*-------------------------------------
+  modal for SP
+-------------------------------------*/
+@media screen and (max-width: 600px){
+  .modal_wrapper{
+    font-size: 28px;
+    margin-top: 56px;
+  }
+}
+
+
+/*-------------------------------------
+ aniation
+-------------------------------------*/
+/* @keyframes opti-camo {
+  0%{
+    opacity: .5;
+    filter: hue-rotate(90deg);
+  }
+  5%{
+    opacity: 0;
+  }
+  10%{
+    opacity: .2;
+    filter: hue-rotate(90deg);
+  }
+  20%{
+    opacity: .5;
+    filter: hue-rotate(90deg);
+  }
+  50%{
+    opacity: .09;
+    filter: hue-rotate(0deg);
+  }
+  100%{
+    opacity: 1;
+  }
+} */

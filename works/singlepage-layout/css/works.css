@@ -1,0 +1,103 @@
+.works{
+  background-color: #383634;
+  color: #FFF;
+  text-align: center;
+  padding: 80px;
+}
+
+.works .heading::before,
+.works .heading::after{
+  border-color: #FFF;
+}
+
+/* 作品紹介テーブルのレイアウト */
+.works-table{
+  display: table;
+  margin-top: 60px;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.work-box{
+  display: table-cell;
+  position: relative  ;
+}
+
+.work-box::after{
+  background: no-repeat;
+  background-size: 100% 100%;
+  content: "";
+  opacity: 0.2;
+  position: absolute;
+    left: 0;
+    top: 50%;
+  transform: scaleY(-1);
+  height: 50%;
+  width: 100%;
+}
+
+.work-box.tree::after{
+  background: url("../images/tree.jpg");
+}
+
+.work-box.building::after{
+  background: url("../images/building.jpg")
+}
+
+.work-box.lake::after{
+  background: url("../images/lake.jpg")
+}
+
+.work-box.sky::after{
+  background: url("../images/sky.jpg");
+}
+
+.work-img{
+  display: block;
+  margin: 0 0 60%;
+  width: 100%;
+}
+
+/* .work-box:nth-child(odd) .work-img */
+.work-box:nth-of-type(odd) .work-img{
+  margin: 60% 0 0;
+}
+.work-box:nth-of-type(odd) .desc-frame,
+.work-box:nth-of-type(odd)::after{
+  top: 0;
+}
+
+.desc-frame{
+  overflow-y: auto;
+  position: absolute;
+    top: 50%;
+    left: 0;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+
+.desc-area{
+  display: table;
+  height: 100%;
+  width: 100%;
+  /* padding: 20px; */
+}
+
+.work-desc{
+  display: table-cell;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  vertical-align: middle;
+}
+
+.work-desc .button{
+  margin-top: 20px;
+  padding: 1.5rem;
+  width: 60%;
+}
+
+.button-ghost{
+  background-color: rgba(255,255,255,0.15);
+  border: 1px solid #FFF;
+}

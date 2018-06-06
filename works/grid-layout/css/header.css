@@ -1,0 +1,46 @@
+.header{
+  padding: 25px 0;
+  width: 180px;
+  text-align: center;
+  border-bottom: none;
+}
+
+.header .logo{
+  display: inline-block;
+  height: 136px;
+  width: 136px;
+}
+
+.logo:hover{
+  transform: rotate(-360deg);
+  transition: 1s;
+}
+
+.nav{
+  margin: 35px auto 10px;
+}
+
+.nav-item {
+  margin-top: 20px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.nav-item a{
+  display: inline-block;
+}
+
+/* 各ナビゲーションホバー時、下線を表示する */
+.nav-item a::after{
+  content: "";
+  border-bottom: 1px solid #7C5119;
+  display: block;
+  width: 0;
+  margin: 6px auto 1px;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-item a:hover::after{
+  width: 100%;
+}

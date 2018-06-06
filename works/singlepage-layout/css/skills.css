@@ -1,0 +1,43 @@
+.skills{
+  background-color: #FFF;
+  text-align: center;
+  width: 100%;
+  padding: 80px 0;
+  /* margin-bottom: 30px; */
+}
+
+.skills-table{
+  display: table;
+  margin: 50px auto 0;
+  min-width: 495px;
+  table-layout: fixed;
+  width: 80%;
+}
+
+.skill-cell{
+  display: table-cell;
+}
+
+.skill-cell > .icon{
+  border: 4px solid;
+  border-radius: 50%;
+  color: #F1B400;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  padding: 20px;
+  height: 150px;
+  width: 150px;
+}
+
+.skill-title{
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  margin: 0 20px 20px;
+}
+
+.skill-desc{
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin: 0 20px;
+}

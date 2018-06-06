@@ -1,0 +1,61 @@
+html{
+  font-size: 62.5%;
+}
+
+*,*::before,*::after{
+  box-sizing: border-box;
+}
+
+body{
+  background: #151515 url("../images/bg.png") no-repeat fixed left bottom;
+  background-size: cover;
+  color: #000;
+  font-size: 1.4rem;
+  font-family: 'Hiragino Kaku Gothic ProN', Mairyo, sans-serif;
+}
+
+.wrapper{
+  width: 100%;
+}
+
+/* 各セクションの見出し */
+.heading{
+  display: inline-block;
+  font-size: 4rem;
+  letter-spacing: 2px;
+  margin: 30px 0 15px;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.heading::before,
+.heading::after{
+  content: "";
+  border-bottom: 2px solid #999;
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.heading::before{
+  bottom: 5px;
+}
+
+/* 各セクションリンクボタンのスタイル */
+.button{
+  background-color: #AFA58D;
+  border-radius: 4px;
+  color: inherit;
+  display: inline-block;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  margin: 10px;
+  padding: 20px;
+  text-decoration: none;
+  width: 200px;
+}
+
+.button:hover{
+  opacity: 0.9;
+}

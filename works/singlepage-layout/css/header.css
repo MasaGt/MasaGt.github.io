@@ -1,0 +1,40 @@
+.header{
+  color: #FFF;
+  padding: 200px 30px 80px;
+  text-align: center;
+  font-family: 'Press Start 2P', 'Hiragino Kaku Gothic ProN', Mairyo, sans-serif;
+}
+
+.sub-title{
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  margin: 0 0 30px;
+}
+
+.sub-title::before, .sub-title::after{
+  background-color: #FFF;
+  content: "";
+  display: inline-block;
+  height: 2px;
+  margin: 0 30px;
+  vertical-align: middle;
+  width: 140px;
+}
+
+.title{
+  font-size: 4.1rem
+  margin: 50px 0 40px;
+}
+
+.site-description{
+  margin-bottom: 50px;
+  $color: #888;
+  font-size: 1.4rem;
+}
+
+/* リンクボタンのベースレイアウトはgeneral.cssに記載 */
+.button-showy{
+  background-color: #F1B400;
+}
+
+/* 見出しのベースレイアウトはgeneral.cssに記載 */
