@@ -43,14 +43,6 @@
   position: relative;
 }
 
-.work_img1 img,
-.work_img2 img,
-.work_img3 img{
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 .work_img1,
 .work_img2,
 .work_img3{

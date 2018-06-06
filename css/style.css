@@ -290,6 +290,7 @@ body.is-unscrollable{
 
 .modal_work-img{
   display: block;
+  display: none;
   width: 100%;
   max-width: 800px;
   margin: auto;
@@ -368,7 +369,6 @@ body.is-unscrollable{
   letter-spacing: 1px;
   line-height: 58px;
   opacity: 0;
-  /* transform: translateY(-50px); */
   transition: .25s;
   height: 100%;
   width: 100%;
@@ -380,7 +380,6 @@ body.is-unscrollable{
 
 .modal_close-btn:hover::before{
   border-radius: 50%;
-  opacity: .8;
   transform: translateX(0px) translateY(0px) rotate(180deg);
   height: 100%;
   width: 100%;
@@ -388,7 +387,26 @@ body.is-unscrollable{
 
 .modal_close-btn:hover::after{
   opacity: 1;
-  /* transform: translateY(0px); */
+}
+/*-------------------------------------
+modal for tablet & SP
+-------------------------------------*/
+@media screen and (max-width: 959px){
+  /* negation of hover animation */
+  .modal_close-btn:hover{
+    border-color: rgba(255, 255, 255, .8);
+  }
+
+  .modal_close-btn:hover::before{
+    border-radius: 5px;
+    transform: translateX(calc((58px - 54px) / 2)) translateY(calc((58px/2) - (9px/2)));
+    height: 5px;
+    width: 50px;
+  }
+
+  .modal_close-btn:hover::after{
+    opacity: 0;
+  }
 }
 /*-------------------------------------
   modal for SP
@@ -398,6 +416,7 @@ body.is-unscrollable{
     font-size: 28px;
     margin-top: 56px;
   }
+
 }
 
 
