@@ -31,6 +31,8 @@ $(function () {
   var modal = {
     modalBase: document.getElementById('modal-base'),
     modalLoader: document.getElementById('modal_loader'),
+    modalBtnWrapper: document.getElementById('modal_btn-wrapper'),
+    modalCloseBtn: document.getElementById('modal_close-btn'),
     showTargetWrapper: null,
     gif: null
   };
@@ -168,11 +170,6 @@ $(function () {
         this.setLink(data.link);
         wrapper.appendChild(this.container);
 
-        var btnWrapper = Util.creatElem('div', ['modal_btn-wrapper', 'target']);
-        var closeBtn = Util.creatElem('div', ['modal_close-btn']);
-        btnWrapper.appendChild(closeBtn);
-        wrapper.appendChild(btnWrapper);
-
         this.modalFragment.appendChild(wrapper);
       }
     }, {
@@ -291,7 +288,7 @@ $(function () {
     }
 
     worksList.appendChild(workContent.getWorkContent());
-    modal.modalBase.appendChild(modalContent.getModalContent());
+    modal.modalBase.insertBefore(modalContent.getModalContent(), modal.modalBtnWrapper);
   }
 
   /*----------------------------------------------------------------------
@@ -342,17 +339,13 @@ $(function () {
           // preparation to slide in modale contents
           $(modal.showTargetWrapper).addClass('is-set');
 
-          // prevent cash
           modal.gif.setAttribute('src', this.src);
 
           // hide loading display
           $(modal.modalLoader).addClass('is-finished');
 
           // show modal contents
-          $(modal.showTargetWrapper).find('.modal_btn-wrapper').slideDown(ANIME_MID_SLOW_MILSEC);
           $(modal.showTargetWrapper).find('.modal_work-container').slideDown(ANIME_MID_SLOW_MILSEC);
-          // ↓close button will be slideDown twice
-          // $(modal.showTargetWrapper).find('.target').slideDown(ANIME_MID_SLOW_MILSEC);
         });
 
         // prevent cash
@@ -372,7 +365,7 @@ $(function () {
       var closeBtn = this;
       // $(closeBtn).off('click');
 
-      $(modal.showTargetWrapper).find('.target').slideUp(ANIME_MID_SLOW_MILSEC, function () {
+      $(modal.showTargetWrapper).find('.modal_work-container').slideUp(ANIME_MID_SLOW_MILSEC, function () {
         // preparation to slide out modale contents
         $(modal.showTargetWrapper).find('.is-set').removeClass('is-set');
         modal.gif.removeAttribute('src');
@@ -547,7 +540,7 @@ $(function () {
 
     // trigger of show & hide modal
     $('#works-list').on('click', '.work_title', showModal());
-    $(modal.modalBase).on('click', '.modal_close-btn', closeModal(modal.modalBase));
+    $(modal.modalCloseBtn).click(closeModal(modal.modalBase));
   })();
   /* END of initializing */
 });
