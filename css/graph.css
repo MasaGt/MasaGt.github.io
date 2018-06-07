@@ -31,6 +31,10 @@ BEGIN bar style
   transform-origin: left top;
   transform-style: preserve-3d;
   transition: .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   min-height: 48px;
   width: 100%;
 }
