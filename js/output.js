@@ -405,6 +405,19 @@ $(function () {
     };
   }
 
+  /*----------------------------------------------------------------------
+  Following process is related to judging device's event at skill section
+  ----------------------------------------------------------------------*/
+  function judgeEvent(ua) {
+    if (ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1 || ua.indexOf('ipod') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('mobile') !== -1 || ua.indexOf('windows') !== -1 && ua.indexOf('phone') !== -1 || ua.indexOf('windows') != -1 && ua.indexOf('touch') != -1 && ua.indexOf('tablet pc') == -1) {
+      // Mobile(SP & tab)
+      return { enter: 'ouchstart', leave: 'touchend' };
+    } else {
+      // PC
+      return { enter: 'mouseenter', leave: 'mouseleave' };
+    }
+  }
+
   /*-----------------------------------
   initializing
   -----------------------------------*/
@@ -489,7 +502,11 @@ $(function () {
     });
 
     // skill bar hover
-    $('.bar').mouseenter(function (e) {
+    var ua = navigator.userAgent.toLowerCase();
+    // judge us's enter & leave event
+    var mouseEv = judgeEvent(ua);
+
+    $('.bar').on(mouseEv.enter, function (e) {
       $(this).addClass('is-protruded');
     });
 
@@ -501,7 +518,7 @@ $(function () {
       $(this).find('.bar_description').slideDown(ANIME_FAST_MILSEC);
     });
 
-    $('.bar').mouseleave(function (e) {
+    $('.bar').on(mouseEv.leave, function (e) {
       var _this = this;
       $(this).find('.bar_description').slideUp(ANIME_FAST_MILSEC, function () {
         $(_this).removeClass('is-protruded');
