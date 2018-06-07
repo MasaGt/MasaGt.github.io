@@ -331,27 +331,33 @@ $(function () {
         return;
       }
 
-      modal.gif = modal.showTargetWrapper.getElementsByClassName('modal_work-img')[0];
-      var image = new Image();
-      image.src = modal.gif.getAttribute('data-image-url') + '?' + new Date().getTime();
-
-      $(image).on('load', function () {
-        // prevent cash
-        modal.gif.setAttribute('src', this.src);
-
-        // hide loading display
-        $(modal.modalLoader).addClass('is-finished');
-
-        // show modal container
-        $(modal.modalBase).fadeIn(ANIME_MID_FAST_MILSEC, function () {
-          // preparation to slide in modale contents
-          $(modal.showTargetWrapper).addClass('is-set');
-          $(modal.showTargetWrapper).find('.target').slideDown(ANIME_MID_SLOW_MILSEC);
-        });
-      });
-
       $('html').addClass('is--unscrollable');
       $('body').addClass('is-unscrollable');
+
+      modal.gif = modal.showTargetWrapper.getElementsByClassName('modal_work-img')[0];
+      var image = new Image();
+
+      $(modal.modalBase).fadeIn(ANIME_MID_FAST_MILSEC, function () {
+        $(image).on('load', function () {
+          // preparation to slide in modale contents
+          $(modal.showTargetWrapper).addClass('is-set');
+
+          // prevent cash
+          modal.gif.setAttribute('src', this.src);
+
+          // hide loading display
+          $(modal.modalLoader).addClass('is-finished');
+
+          // show modal contents
+          $(modal.showTargetWrapper).find('.modal_btn-wrapper').slideDown(ANIME_MID_SLOW_MILSEC);
+          $(modal.showTargetWrapper).find('.modal_work-container').slideDown(ANIME_MID_SLOW_MILSEC);
+          // ↓close button will be slideDown twice
+          // $(modal.showTargetWrapper).find('.target').slideDown(ANIME_MID_SLOW_MILSEC);
+        });
+
+        // prevent cash
+        image.src = modal.gif.getAttribute('data-image-url') + '?' + new Date().getTime();
+      });
     };
   }
 
@@ -411,7 +417,7 @@ $(function () {
   function judgeEvent(ua) {
     if (ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1 || ua.indexOf('ipod') !== -1 || ua.indexOf('android') !== -1 || ua.indexOf('mobile') !== -1 || ua.indexOf('windows') !== -1 && ua.indexOf('phone') !== -1 || ua.indexOf('windows') != -1 && ua.indexOf('touch') != -1 && ua.indexOf('tablet pc') == -1) {
       // Mobile(SP & tab)
-      return { enter: 'ouchstart', leave: 'touchend' };
+      return { enter: 'touchstart', leave: 'touchend' };
     } else {
       // PC
       return { enter: 'mouseenter', leave: 'mouseleave' };
