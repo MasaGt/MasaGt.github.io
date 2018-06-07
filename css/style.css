@@ -232,12 +232,8 @@ body.is-unscrollable{
   modal
 -------------------------------------*/
 .modal-base,.modal_wrapper,
-.modal_work-container,.modal_btn-wrapper{
+.modal_work-container{
   display: none;
-}
-
-.modal_wrapper.is-set{
-  display: block;
 }
 
 .modal-base{
@@ -281,6 +277,10 @@ body.is-unscrollable{
   margin: 0 5%;
   margin-top: 5%;
   width: 90%;
+}
+
+.modal_wrapper.is-set{
+  display: block;
 }
 
 .modal_work-container {
