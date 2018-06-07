@@ -25,6 +25,7 @@
 
     let modal = {
       modalBase: document.getElementById('modal-base'),
+      modalLoader: document.getElementById('modal_loader'),
       showTargetWrapper: null,
       gif: null,
     };
@@ -234,7 +235,7 @@
       return null;
     }
 
-    // open modal
+    // show modal
     function showModal() {
 
       return function (e) {
@@ -251,18 +252,27 @@
         }
 
         modal.gif = modal.showTargetWrapper.getElementsByClassName('modal_work-img')[0];
-        // prevent cash
-        modal.gif.setAttribute('src', modal.gif.getAttribute('data-image-url')
-         + '?' + (new Date).getTime());
+        let image = new Image();
+        image.src = modal.gif.getAttribute('data-image-url')
+         + '?' + (new Date).getTime();
+
+        $(image).on('load', function () {
+          // prevent cash
+          modal.gif.setAttribute('src', this.src);
+
+          // hide loading display
+          $(modal.modalLoader).addClass('is-finished');
+
+          // show modal container
+          $(modal.modalBase).fadeIn(ANIME_MID_FAST_MILSEC, function () {
+            // preparation to slide in modale contents
+            $(modal.showTargetWrapper).addClass('is-set');
+            $(modal.showTargetWrapper).find('.target').slideDown(ANIME_MID_SLOW_MILSEC);
+          });
+        });
 
         $('html').addClass('is--unscrollable');
         $('body').addClass('is-unscrollable');
-
-        $(modal.modalBase).fadeIn(ANIME_MID_FAST_MILSEC, function () {
-          // preparation to slide in modale contents
-          $(modal.showTargetWrapper).addClass('is-set');
-          $(modal.showTargetWrapper).find('.target').slideDown(ANIME_MID_SLOW_MILSEC);
-        });
 
       };
     }
@@ -282,6 +292,7 @@
           modal.gif.removeAttribute('src');
 
           $(modal.modalBase).fadeOut(ANIME_MID_FAST_MILSEC, function () {
+            $(modal.modalLoader).removeClass('is-finished');
             $('html').removeClass('is-unscrollable');
             $('body').removeClass('is-unscrollable');
           });
@@ -313,6 +324,26 @@
         state.timerID = null;
       };
 
+    }
+
+    /*----------------------------------------------------------------------
+    Following process is related to judging device's event at skill section
+    ----------------------------------------------------------------------*/
+    function judgeEvent (ua) {
+      if (ua.indexOf('iphone') !== -1 ||
+      ua.indexOf('ipad') !== -1 ||
+      ua.indexOf('ipod') !== -1 ||
+      ua.indexOf('android') !== -1 ||
+      ua.indexOf('mobile') !== -1 ||
+      (ua.indexOf('windows') !== -1 && ua.indexOf('phone') !== -1) ||
+      (ua.indexOf('windows') != -1 && ua.indexOf('touch') != -1 && ua.indexOf('tablet pc') == -1)
+     ) {
+        // Mobile(SP & tab)
+        return { enter: 'ouchstart', leave: 'touchend' };
+      } else {
+        // PC
+        return { enter: 'mouseenter', leave: 'mouseleave' };
+      }
     }
 
     /*-----------------------------------
@@ -403,7 +434,11 @@
       });
 
       // skill bar hover
-      $('.bar').mouseenter(function (e) {
+      let ua = navigator.userAgent.toLowerCase();
+      // judge us's enter & leave event
+      let mouseEv = judgeEvent(ua);
+
+      $('.bar').on(mouseEv.enter, function (e) {
         $(this).addClass('is-protruded');
       });
 
@@ -415,7 +450,7 @@
         $(this).find('.bar_description').slideDown(ANIME_FAST_MILSEC);
       });
 
-      $('.bar').mouseleave(function (e) {
+      $('.bar').on(mouseEv.leave, function (e) {
         let _this = this;
         $(this).find('.bar_description').slideUp(ANIME_FAST_MILSEC, function () {
           $(_this).removeClass('is-protruded');
