@@ -371,7 +371,7 @@ body.is-unscrollable{
   display: block;
   /* transX: (parentHeight - thisHeight) /2 */
   /* transY: (parentWidth /2) - (thisWidth /2) */
-  transform: translateX(calc((58px - 54px) / 2)) translateY(calc((58px/2) - (9px/2)));
+  transform: translateX(2px) translateY(24.5px);
   transform-origin: center;
   transition: .25s;
   height: 5px;
