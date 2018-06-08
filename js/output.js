@@ -191,32 +191,10 @@ $(function () {
         }
 
         var workSkill = Util.creatElem('div', ['modal_work-skill']);
-
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = skills[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var val = _step.value;
-
-            var skillTag = Util.creatElem('span', ['modal_skill-tag']);
-            skillTag.textContent = val;
-            workSkill.appendChild(skillTag);
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
+        for (var i = 0, length = skills.length; i < length; i++) {
+          var skillTag = Util.creatElem('span', ['modal_skill-tag']);
+          skillTag.textContent = skills[i];
+          workSkill.appendChild(skillTag);
         }
 
         this.container.appendChild(workSkill);

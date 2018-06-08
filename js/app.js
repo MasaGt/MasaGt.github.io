@@ -150,10 +150,9 @@
         if (!Util.hasVal(skills)) { return; }
 
         let workSkill = Util.creatElem('div', ['modal_work-skill']);
-
-        for (let val of skills) {
+        for (var i = 0, length = skills.length; i < length; i++) {
           let skillTag = Util.creatElem('span', ['modal_skill-tag']);
-          skillTag.textContent = val;
+          skillTag.textContent = skills[i];
           workSkill.appendChild(skillTag);
         }
 
